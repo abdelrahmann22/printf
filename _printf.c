@@ -3,7 +3,6 @@
 /**
  * _printf - prints anything
  * @format: the format to print
- * 
  * Return: number of char printed
 */
 
@@ -22,7 +21,6 @@ int _printf(const char *format, ...)
 			return (-1);
 
 		count = 0;
-		
 		for (i = 0; format[i] != '\0'; i++)
 		{
 			if (format[i] == '%')
