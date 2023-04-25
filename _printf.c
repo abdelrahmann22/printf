@@ -60,17 +60,8 @@ int _printf(const char *format, ...)
 	specifier_t specifiers[] = {
 		{"c", print_char},
 		{"s", print_string},
-		/*{"d", print_int},
-		{"i", print_int},
-		{"b", print_binary},*/
-		{"b", print_unsigned},
-		/*{"o", print_octal},
-		{"x", print_hex},
-		{"X", print_HEX},
-		{"R", print_rev},
-		{"r", print_rot13},
-		{"S", print_S},
-		{"p", print_address},*/
+		{"u", print_unsigned},
+		{"b", print_binary},
 		{NULL, NULL}
 	};
 
