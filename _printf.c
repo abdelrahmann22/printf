@@ -25,8 +25,8 @@ int _printf(const char *format, ...)
 		{"R", print_rev},
 		{"r", print_rot13},
 		{"S", print_S},
-		{"p", print_address},*/
-		{"%", print_percent},
+		{"p", print_address},
+		{"%", print_percent},*/
 		{NULL, NULL}
 	};
 
