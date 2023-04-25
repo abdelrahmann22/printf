@@ -53,12 +53,13 @@ int print_md(const char *format, specifier_t *specifiers, va_list args)
 	int count = 0, i = 0, j = 0;
 
 	a = format[i];
-	while (format[i] != '\0')
+	while (a != '\0')
 	{
-		if (format[i] == '%')
+		if (a == '%')
 		{
 			j = 0;
 			i++;
+			a = format[i];
 			while (specifiers[j].type != NULL && a != *(specifiers[j].type) )
 				j++;
 			if (specifiers[j].type != NULL)
