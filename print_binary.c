@@ -4,8 +4,9 @@
  * print_binary - prints a binary number
  * @args: the binary number to print
  * 
- * Return: number of char printed
+ * Return: number of bytes printed
 */
+
 int print_binary(va_list args)
 {
 	unsigned int i = 0, count = 0, binary, arr[32], num;
