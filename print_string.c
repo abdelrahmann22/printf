@@ -9,15 +9,15 @@
 
 int print_string(va_list args)
 {
-	char *s = va_arg(args, char *);
-	int i = 0;
+	int i, count = 0;
+	char *str;
 
-	if (s == NULL)
-		s = "(null)";
-	while (s[i] != '\0')
-	{
-		_putchar(s[i]);
-		i++;
-	}
-	return (i);
+	str = va_arg(args, char *);
+	if (str == NULL)
+		str = "(null)";
+
+	for (i = 0; str[i]; i++)
+		count += _putchar(str[i]);
+
+	return (count);
 }
