@@ -9,8 +9,8 @@
 int print_binary(va_list args)
 {
 	unsigned int i = 0, count = 0, binary, arr[32], num;
-	num = va_arg(args, unsigned int);
 
+	num = va_arg(args, unsigned int);
 	if (num < 1)
 	{
 		_putchar(48);
