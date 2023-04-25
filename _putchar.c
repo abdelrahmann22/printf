@@ -8,8 +8,8 @@
 
 int _putchar(char c)
 {
-	static char buff[BUFFER_SIZE];
-	static int i;
+	char buff[BUFFER_SIZE];
+	int i;
 
 	if (c == -1 || i >= BUFFER_SIZE)
 	{
