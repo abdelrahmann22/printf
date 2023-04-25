@@ -11,7 +11,7 @@ int _printf(const char *format, ...)
 	int counter = 0;
 	va_list args;
 	char *ptr, *st;
-	params_t params = PARAMS_INIT;
+	params_t params = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};;
 
 	va_start(args, format);
 
@@ -34,7 +34,18 @@ int _printf(const char *format, ...)
 			ptr++;
 		}
 		ptr = getwidth(ptr, &params, args);
-		ptr = get_precision(p, &params, args);
+		ptr = get_precision(ptr, &params, args);
 
+		if(!get_specifier(ptr))
+		{
+			counter += print_from_to(st, ptr, params.l_mod || params.h_mod ? ptr - 1 : 0);
+		}
+		else
+		{
+			counter += get_print_func(ptr, args, &params);
+		}
+		_putchar(BUFF_FLUSH);
+		va_end(args);
+		return (counter);
 	}	
 }

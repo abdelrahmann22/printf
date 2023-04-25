@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 #define OUTPUT_BUFF_SIZE 1024
-#define BUF_FLUSH -1
+#define BUFF_FLUSH -1
 #define NULL_STRING "(null)"
 #define PARAMS_INIT = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 #define CONVERT_LOWERCASE 1
@@ -40,7 +40,7 @@ typedef struct params
 	unsigned int precision;
 	unsigned int h_mod : 1;
 	unsigned int l_mod : 1;
-}params_t
+} params_t;
 
 /**
  * struct speci - Struct token
@@ -48,13 +48,58 @@ typedef struct params
  * @specifier: format token
  * @f: Function associated
 */
+
 typedef struct specifier
 {
 	char *specifier;
 	int (*f)(va_list, params_t *);
-}specifier_t;
-int _printf(const char *format, ...);
-int print_char(va_list args);
-int print_str(va_list args);
+} specifier_t;
 
+int _printf(const char *format, ...);
+
+int print_char(va_list args, params_t *params);
+int print_str(va_list args, params_t *params);
+int print_perc(va_list args, params_t *params);
+int print_S(va_list args, params_t *params);
+
+char *convert(long int num, int base, int flags, params_t *params);
+int print_unsigned(va_list args, params_t *params);
+int print_address(va_list args, params_t *params);
+
+int _puts(char *str);
+int _putchar(int c);
+
+int (*get_specif(char *s)) (va_list args, params_t *params);
+int get_print_func(char *s, va_list args, params_t *params);
+int get_modifier(char *s, params_t *params);
+int get_flag(char *s, params_t *params);
+char *get_width(char *s, params_t *params, va_list args);
+
+
+
+int (*get_specif(char *s)) (va_list args, params_t *params);
+int get_print_func(char *s, va_list args, params_t *params);
+int get_modifier(char *s, params_t *params);
+int get_flag(char *s, params_t *params);
+char *get_width(char *s, params_t *params, va_list args);
+
+int print_hex(va_list args, params_t *params);
+int print_hexC(va_list args, params_t *params);
+int print_bin(va_list args, params_t *params);
+int print_oct(va_list args, params_t *params);
+
+int print_from_to(char *start, char *end, char *exc);
+int print_ptr(va_list args, params_t *params);
+int print_rev(va_list args, params_t *params);
+int print_r13(va_list args, params_t *params);
+
+int _isdigit(int c);
+int _strlen(char *s);
+int print_number(char *str, params_t *params);
+int print_number_rshift(char *str, params_t *params);
+int print_number_lshift(char *str, params_t *params);
+
+void init_params(params_t *params, va_list args);
+
+char *get_precision(char *ptr, params_t *params, va_list args);
 #endif
