@@ -12,6 +12,9 @@ int (*get_specifier(char s))(va_list)
 		{"s", print_string},
 		{"b", print_binary},
 		{"u", print_unsigned},
+		{"o", print_octal},
+		{"x", print_hex},
+		{"X", print_HEX},
 		{NULL, NULL}
 	};
 	int i;
