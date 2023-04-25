@@ -3,7 +3,6 @@
 /**
  * print_char - prints a character
  * @args: the character to print
- * 
  * Return: number of char printed
 */
 
