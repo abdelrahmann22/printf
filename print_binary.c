@@ -14,7 +14,7 @@ int print_binary(va_list args)
 
 	if (num < 1)
 	{
-		_putchar('48');
+		_putchar(48);
 		count++;
 		return (count);
 	}
@@ -23,9 +23,9 @@ int print_binary(va_list args)
 		while (num > 0)
 		{
 			binary = num % 2;
-			arr[i] = binary;
 			num /= 2;
-			i++;
+			arr[i] = binary;
+			count++;
 		}
 		i = count - 1;
 		while (i > 0)
