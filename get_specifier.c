@@ -3,7 +3,6 @@
 /**
  * get_specifier - returns a function pointer to the correct specifier
  * @s: the specifier to check
- * 
  * Return: a function pointer to the correct specifier
 */
 int (*get_specifier(char s))(va_list)
