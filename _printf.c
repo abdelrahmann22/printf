@@ -15,10 +15,14 @@ int _printf(const char *format, ...)
 	{
 		va_list args;
 		int (*f)(va_list);
+
 		va_start(args, format);
+
 		if (format[0] == '%' && format[1] == '\0')
 			return (-1);
+
 		count = 0;
+		
 		for (i = 0; format[i] != '\0'; i++)
 		{
 			if (format[i] == '%')

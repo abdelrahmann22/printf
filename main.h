@@ -3,10 +3,14 @@
 
 #include <stdio.h>
 #include <stdarg.h>
-#include <stdlib.h>
 #include <unistd.h>
 #include <limits.h>
 
+/**
+ * struct specifier - struct for specifiers
+ * @type: the type of specifier
+ * @f: the function pointer to the correct specifier
+*/
 typedef struct specifier
 {
 	char *type;
