@@ -11,6 +11,8 @@ int (*get_specifier(char s))(va_list)
 		{"c", print_char},
 		{"s", print_string},
 		{"b", print_binary},
+		{"d", print_int},
+		{"i", print_int},
 		{"u", print_unsigned},
 		{"o", print_octal},
 		{"x", print_hex},
