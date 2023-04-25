@@ -11,7 +11,7 @@
 int print_md(const char *format, specifier_t *specifiers, va_list args)
 {
 	char a;
-	int count = 0, i = 0, j = 0;
+	int count = 0, i = 0, j;
 
 	a = format[i];
 	while (a != '\0')
