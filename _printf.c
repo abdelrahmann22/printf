@@ -1,51 +1,6 @@
 #include "main.h"
 
 /**
- * print_md - prints anything
- * @format: the format to print
- * @specifiers: the specifiers to print
- * @args: the arguments to print
- * 
- * Return: number of char printed
-*/
-int print_md(const char *format, specifier_t *specifiers, va_list args)
-{
-	char a;
-	int count = 0, i = 0, j;
-
-	a = format[i];
-	while (a != '\0')
-	{
-		if (a == '%')
-		{
-			j = 0;
-			i++;
-			a = format[i];
-			while (specifiers[j].type != NULL && a != *(specifiers[j].type) )
-				j++;
-			if (specifiers[j].type != NULL)
-			{
-				count += specifiers[j].f(args);
-			}
-			else
-			{
-				if (a == '\0')
-					return (-1);
-				if (a != '%')
-					count += _putchar('%');
-				count += _putchar(a);
-			}
-		}
-		else
-			count += _putchar(a);
-		
-		i++;
-		a = format[i];
-	}
-	return (count);
-}
-
-/**
  * _printf - prints anything
  * @format: the format to print
  * 
@@ -54,23 +9,39 @@ int print_md(const char *format, specifier_t *specifiers, va_list args)
 
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int i = 0;
+	int count = -1, i;
 
-	specifier_t specifiers[] = {
-		{"c", print_char},
-		{"s", print_string},
-		{"u", print_unsigned},
-		{"b", print_binary},
-		{NULL, NULL}
-	};
+	if (format != NULL)
+	{
+		va_list args;
+		int (*f)(va_list);
+		va_start(args, format);
+		if (format[0] == '%' && format[1] == '\0')
+			return (-1);
+		count = 0;
+		for (i = 0; format[i] != '\0'; i++)
+		{
+			if (format[i] == '%')
+			{
+				if (format[i + 1] == '%')
+				{
+					count += _putchar(format[i]);
+					i++;
+				}
+				else if (format[i + 1] != '\0')
+				{
+					f = get_specifier(format[i + 1]);
+					count += (f ? f(args) : _putchar(format[i]) + _putchar(format[i + 1]));
+					i++;
+				}
+			}
+			else
+			{
+				count += _putchar(format[i]);
+			}
+		}
+		va_end(args);
 
-	if (format == NULL)
-		return (-1);
-	
-	va_start(args, format);
-	i = print_md(format, specifiers, args);
-	va_end(args);
-	return (i);
-
+	}
+	return (count);
 }
