@@ -13,7 +13,7 @@ int _putchar(char c)
 
 	if (c == -1 || i >= BUFFER_SIZE)
 	{
-		write(1, buff, i);
+		write(1, &buff, i);
 		i = 0;
 	}
 	if (c != -1)
