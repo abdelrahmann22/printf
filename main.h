@@ -14,6 +14,7 @@ typedef struct specifier
 } specifier_t;
 
 int _printf(const char *format, ...);
+int (*get_specifier(char s))(va_list);
 int print_md(const char *format, specifier_t *specifiers, va_list args);
 int print_char(va_list args);
 int print_string(va_list args);
