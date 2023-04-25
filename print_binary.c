@@ -3,7 +3,6 @@
 /**
  * print_binary - prints a binary number
  * @args: the binary number to print
- * 
  * Return: number of bytes printed
 */
 
