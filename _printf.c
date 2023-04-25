@@ -62,9 +62,9 @@ int _printf(const char *format, ...)
 		{"s", print_string},
 		/*{"d", print_int},
 		{"i", print_int},
-		{"b", print_binary},
+		{"b", print_binary},*/
 		{"u", print_unsigned},
-		{"o", print_octal},
+		/*{"o", print_octal},
 		{"x", print_hex},
 		{"X", print_HEX},
 		{"R", print_rev},
