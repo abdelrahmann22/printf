@@ -25,8 +25,7 @@ int _printf(const char *format, ...)
 		{"R", print_rev},
 		{"r", print_rot13},
 		{"S", print_S},
-		{"p", print_address},
-		{"%", print_percent},*/
+		{"p", print_address},*/
 		{NULL, NULL}
 	};
 
@@ -53,12 +52,14 @@ int print_md(const char *format, specifier_t *specifiers, va_list args)
 	char a;
 	int count = 0, i = 0, j = 0;
 
+	a = format[i];
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
+			j = 0;
 			i++;
-			while (specifiers[j].type != NULL && i != *(specifiers[j].type) )
+			while (specifiers[j].type != NULL && a != *(specifiers[j].type) )
 				j++;
 			if (specifiers[j].type != NULL)
 			{
@@ -66,7 +67,7 @@ int print_md(const char *format, specifier_t *specifiers, va_list args)
 			}
 			else
 			{
-				if (format[i] == '\0')
+				if (a == '\0')
 					return (-1);
 				if (a != '%')
 					count += _putchar('%');
@@ -77,6 +78,7 @@ int print_md(const char *format, specifier_t *specifiers, va_list args)
 			count += _putchar(format[i]);
 		
 		i++;
+		a = format[i];
 	}
 	return (count);
 }
