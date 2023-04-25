@@ -13,9 +13,10 @@ int print_unsigned(va_list args)
 
 	while ((n / x) > 9)
 		x *= 10;
-	while (x >= 1)
+	while (x != 0)
 	{
-		count += _putchar(((n / x) % 10) + '0');
+		count += _putchar(n / x + '0');
+		n %= x;
 		x /= 10;
 	}
 	return (count);
