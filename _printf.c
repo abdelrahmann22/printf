@@ -1,51 +1,82 @@
 #include "main.h"
 
 /**
- * _printf - prints numbers and strings
- * @format: Format string
- * Return: bytes number printed
+ * _printf - prints anything
+ * @format: the format to print
+ * 
+ * Return: number of char printed
 */
 
 int _printf(const char *format, ...)
 {
-	int counter = 0;
 	va_list args;
-	char *ptr, *st;
-	params_t params = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};;
+	int i = 0;
 
+	specifier_t specifiers[] = {
+		{"c", print_char},
+		{"s", print_string},
+		/*{"d", print_int},
+		{"i", print_int},
+		{"b", print_binary},
+		{"u", print_unsigned},
+		{"o", print_octal},
+		{"x", print_hex},
+		{"X", print_HEX},
+		{"R", print_rev},
+		{"r", print_rot13},
+		{"S", print_S},
+		{"p", print_address},*/
+		{"%", print_percent},
+		{NULL, NULL}
+	};
+
+	if (format == NULL)
+		return (-1);
+	
 	va_start(args, format);
+	i = print_md(format, specifiers, args);
+	va_end(args);
+	return (i);
 
-	if (!format || (format[0] == '%' && !format[1]))
-		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
-		return (-1);
-	for(ptr = (char *)format; *ptr; ptr++)
+}
+
+/**
+ * print_md - prints anything
+ * @format: the format to print
+ * @specifiers: the specifiers to print
+ * @args: the arguments to print
+ * 
+ * Return: number of char printed
+*/
+int print_md(const char *format, specifier_t *specifiers, va_list args)
+{
+	char a;
+	int count = 0, i = 0, j = 0;
+
+	while (format[i] != '\0')
 	{
-		init_param(&params, args);
-		if(*ptr != '%')
+		if (format[i] == '%')
 		{
-			counter += _putchar(*ptr);
-			continue;
-		}
-		st = ptr;
-		ptr++;
-		while (get_flag(ptr, &params))
-		{
-			ptr++;
-		}
-		ptr = getwidth(ptr, &params, args);
-		ptr = get_precision(ptr, &params, args);
-
-		if(!get_specifier(ptr))
-		{
-			counter += print_from_to(st, ptr, params.l_mod || params.h_mod ? ptr - 1 : 0);
+			i++;
+			while (specifiers[j].type != NULL && i != *(specifiers[j].type) )
+				j++;
+			if (specifiers[j].type != NULL)
+			{
+				count += specifiers[j].f(args);
+			}
+			else
+			{
+				if (format[i] == '\0')
+					return (-1);
+				if (a != '%')
+					count += _putchar('%');
+				count += _putchar(format[i]);
+			}
 		}
 		else
-		{
-			counter += get_print_func(ptr, args, &params);
-		}
-		_putchar(BUFF_FLUSH);
-		va_end(args);
-		return (counter);
-	}	
+			count += _putchar(format[i]);
+		
+		i++;
+	}
+	return (count);
 }

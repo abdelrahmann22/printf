@@ -7,9 +7,9 @@
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
-      "externalConsole": false,
-      "cwd": "/home/abdelrahman/Desktop/Work/alx/printf",
-      "program": "/home/abdelrahman/Desktop/Work/alx/printf/build/Debug/outDebug",
+      "externalConsole": true,
+      "cwd": "c:/Users/boudy/Desktop/printf",
+      "program": "c:/Users/boudy/Desktop/printf/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
