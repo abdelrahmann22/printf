@@ -8,10 +8,10 @@
 
 int _putchar(char c)
 {
-	static char buff[1024];
+	static char buff[BUFFER_SIZE];
 	static int i;
 
-	if (c == -1 || i >= 1024)
+	if (c == -1 || i >= BUFFER_SIZE)
 	{
 		write(1, buff, i);
 		i = 0;
